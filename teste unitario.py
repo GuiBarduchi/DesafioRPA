@@ -1,6 +1,8 @@
 import pandas as pd
 import agregaRPA 
 
+# diretorio 
+pasta = 'C:\\Users\\Avell\\Desktop\\Concurso\\rpa'
 # Caso 1: planilha de fornecedor sem existir planilha unificada
 # Cria entrada da função para o caso 1 de teste
 colunas = ['Produto','Quantidade','Valor']
@@ -9,16 +11,12 @@ dados_fornecedor1.loc[0] = ["arroz",10,20]
 dados_fornecedor1.to_csv('fornecedor1.csv', index = False)
 #chama a função
 
-agregaRPA.agrega('fornecedor1.csv','fornecedor1')
+agregaRPA.agrega(pasta,'fornecedor1.csv')
 
 #verifica a saída para o caso 1
 dados_planilha_unificada =  pd.read_csv('Planilha Unificada.csv')
-colunas = dados_planilha_unificada.columns.tolist()
-resposta = pd.DataFrame(columns = colunas)
-resposta.loc[0] = ['fornecedor1',"arrroz",10,20]
-print(resposta)
 
-print(dados_planilha_unificada)
+
 if all(dados_planilha_unificada.loc[dados_planilha_unificada.Fornecedor == 'fornecedor1'].eq(dados_fornecedor1)):
     print("Caso 1 testado com sucesso")
 else:
@@ -32,7 +30,7 @@ dados_fornecedor2.loc[0] = ["feijao",30,15]
 dados_fornecedor2.to_csv('fornecedor2.csv', index = False)
 #chama a função
 
-agregaRPA.agrega('fornecedor2.csv','fornecedor2')
+agregaRPA.agrega(pasta,'fornecedor2.csv')
 
 #verifica a saída para o caso 2
 dados_fornecedor1['Fornecedor']='fornecedor1'
@@ -55,7 +53,7 @@ dados_fornecedor1.loc[1] = ["batata",30,10]
 dados_fornecedor1.to_csv('fornecedor1.csv', index = False)
 #chama a função
 
-agregaRPA.agrega('fornecedor1.csv','fornecedor1')
+agregaRPA.agrega(pasta,'fornecedor1.csv')
 
 #verifica a saída para o caso 3
 dados_planilha_unificada =  pd.read_csv('Planilha Unificada.csv')
@@ -77,7 +75,7 @@ dados_fornecedor1.loc[1] = ["batata",50,5]
 dados_fornecedor1.to_csv('fornecedor1.csv', index = False)
 #chama a função
 
-agregaRPA.agrega('fornecedor1.csv','fornecedor1')
+agregaRPA.agrega(pasta,'fornecedor1.csv')
 
 #verifica a saída para o caso 4
 dados_planilha_unificada =  pd.read_csv('Planilha Unificada.csv')
